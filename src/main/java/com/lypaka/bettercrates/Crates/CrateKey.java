@@ -3,7 +3,7 @@ package com.lypaka.bettercrates.Crates;
 import com.google.common.reflect.TypeToken;
 import com.lypaka.bettercrates.BetterCrates;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.ItemStackBuilder;
+import com.lypaka.lypakautils.MiscHandlers.ItemStackBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.StringNBT;

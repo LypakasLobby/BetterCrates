@@ -1,10 +1,8 @@
 package com.lypaka.bettercrates.Listeners;
 
 import com.lypaka.bettercrates.BetterCrates;
-import com.lypaka.bettercrates.Commands.BetterCratesCommand;
 import com.lypaka.bettercrates.ConfigGetters;
 import com.lypaka.bettercrates.Crates.Crate;
-import com.lypaka.lypakautils.ModVerification;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

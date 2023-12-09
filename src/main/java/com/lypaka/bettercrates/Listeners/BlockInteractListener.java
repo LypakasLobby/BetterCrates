@@ -7,11 +7,9 @@ import com.lypaka.bettercrates.Crates.CrateGUI;
 import com.lypaka.bettercrates.Crates.CrateKey;
 import com.lypaka.bettercrates.Crates.CrateReward;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.PermissionHandler;
-import com.pixelmonmod.pixelmon.Pixelmon;
-import com.pixelmonmod.pixelmon.api.storage.PixelmonStorageManager;
+import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
+import com.lypaka.lypakautils.WorldStuff.WorldMap;
 import com.pixelmonmod.pixelmon.api.storage.PlayerPartyStorage;
-import com.pixelmonmod.pixelmon.api.storage.StoragePosition;
 import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -40,12 +38,16 @@ public class BlockInteractListener {
 
         ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
         BlockPos pos = event.getPos();
-        String worldName = player.getServerWorld().getWorld().toString().replace("ServerLevel[", "").replace("]", "");
+        String worldName = WorldMap.getWorldName(player);
         String location = worldName + "," + pos.getX() + "," + pos.getY() + "," + pos.getZ();
         if (player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) {
 
-            event.setCanceled(true);
-            player.sendMessage(FancyText.getFormattedText("&eBlock's location: &a" + location), player.getUniqueID());
+            if (PermissionHandler.hasPermission(player, "bettercrates.admin")) {
+
+                event.setCanceled(true);
+                player.sendMessage(FancyText.getFormattedText("&eBlock's location: &a" + location), player.getUniqueID());
+
+            }
 
         } else {
 

@@ -36,6 +36,7 @@ public class Crate {
         this.cratePermission = BetterCrates.crateConfigManager.getConfigNode(this.index, "Crate", "Settings", "Permission").getString();
         this.crateReward = new CrateReward(this);
         BetterCrates.crates.add(this);
+        BetterCrates.crateMap.put(this.crateName, this);
 
     }
 

@@ -5,18 +5,17 @@ import com.lypaka.bettercrates.BetterCrates;
 import com.lypaka.bettercrates.Crates.Crate;
 import com.lypaka.bettercrates.Crates.PreviewGUI;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.ItemStackBuilder;
+import com.lypaka.lypakautils.MiscHandlers.ItemStackBuilder;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import com.pixelmonmod.api.pokemon.PokemonSpecification;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.PokemonBuilder;
 import com.pixelmonmod.pixelmon.api.pokemon.species.Species;
 import com.pixelmonmod.pixelmon.api.registries.PixelmonItems;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -34,9 +33,13 @@ public class PreviewCommand {
         for (String a : BetterCratesCommand.ALIASES) {
 
             dispatcher.register(
-                    Commands.literal("bettercrates")
+                    Commands.literal(a)
                             .then(Commands.literal("preview")
                                     .then(Commands.argument("crateName", StringArgumentType.string())
+                                            .suggests(
+                                                    (context, builder) -> ISuggestionProvider.suggest(
+                                                            BetterCrates.crateMap.keySet(), builder)
+                                            )
                                             .executes(c -> {
 
                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {

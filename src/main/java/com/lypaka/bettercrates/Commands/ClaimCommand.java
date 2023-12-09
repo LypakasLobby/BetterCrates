@@ -1,6 +1,5 @@
 package com.lypaka.bettercrates.Commands;
 
-import com.lypaka.bettercrates.BetterCrates;
 import com.lypaka.bettercrates.Crates.CrateGUI;
 import com.lypaka.lypakautils.FancyText;
 import com.mojang.brigadier.CommandDispatcher;

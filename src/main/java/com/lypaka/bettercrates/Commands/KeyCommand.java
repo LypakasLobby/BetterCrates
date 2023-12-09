@@ -4,15 +4,18 @@ import com.lypaka.bettercrates.BetterCrates;
 import com.lypaka.bettercrates.Crates.Crate;
 import com.lypaka.bettercrates.Crates.CrateKey;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.PermissionHandler;
+import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+
+import java.util.Arrays;
 
 public class KeyCommand {
 
@@ -21,11 +24,15 @@ public class KeyCommand {
         for (String a : BetterCratesCommand.ALIASES) {
 
             dispatcher.register(
-                    Commands.literal("bettercrates")
+                    Commands.literal(a)
                             .then(Commands.literal("key")
                                     .then(Commands.literal("give")
                                             .then(Commands.argument("player", EntityArgument.players())
                                                     .then(Commands.argument("crate", StringArgumentType.string())
+                                                            .suggests(
+                                                                    (context, builder) -> ISuggestionProvider.suggest(
+                                                                            BetterCrates.crateMap.keySet(), builder)
+                                                            )
                                                             .then(Commands.argument("amount", IntegerArgumentType.integer(1))
                                                                     .executes(c -> {
 

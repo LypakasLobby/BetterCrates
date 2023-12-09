@@ -6,7 +6,7 @@ import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import ca.landonjw.gooeylibs2.api.page.GooeyPage;
 import ca.landonjw.gooeylibs2.api.template.types.ChestTemplate;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.ItemStackBuilder;
+import com.lypaka.lypakautils.MiscHandlers.ItemStackBuilder;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 

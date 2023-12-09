@@ -7,7 +7,8 @@ import com.lypaka.bettercrates.Crates.CrateGUI;
 import com.lypaka.bettercrates.Crates.CrateKey;
 import com.lypaka.bettercrates.Crates.CrateReward;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.PermissionHandler;
+import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
+import com.lypaka.lypakautils.WorldStuff.WorldMap;
 import com.pixelmonmod.pixelmon.api.storage.PlayerPartyStorage;
 import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
 import net.minecraft.entity.Entity;
@@ -39,7 +40,7 @@ public class EntityInteractListener {
         ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
         Entity entity = event.getTarget();
         BlockPos pos = entity.getPosition();
-        String worldName = player.getServerWorld().getWorld().toString().replace("ServerLevel[", "").replace("]", "");
+        String worldName = WorldMap.getWorldName(player);
         String location = worldName + "," + pos.getX() + "," + pos.getY() + "," + pos.getZ();
         if (player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) {
 
